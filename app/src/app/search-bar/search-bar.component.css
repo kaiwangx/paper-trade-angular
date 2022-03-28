@@ -1,0 +1,17 @@
+.search-bar {
+  border: solid black;
+  border-radius: 20px;
+}
+
+.form-control {
+  border: none;
+}
+
+.search-button {
+  margin: auto 0;
+  text-align: center;
+}
+.clear-button {
+  margin: auto 0;
+  text-align: center;
+}
