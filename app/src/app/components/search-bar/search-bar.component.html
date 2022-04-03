@@ -1,0 +1,32 @@
+<div class="search-bar d-flex">
+  <div class="search-form ps-3 me-auto">
+    <form [formGroup]="tickerForm" (ngSubmit)="onSubmit()">
+      <input class="form-control shadow-none"
+             id="ticker"
+             type="text"
+             size="25"
+             placeholder="Enter stock ticker symbol"
+             formControlName="ticker"
+             [matAutocomplete]="auto"
+      >
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngIf="isLoading">
+          <mat-spinner diameter="30"></mat-spinner>
+        </mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let option of tickerAutocompleteOptions" [value]="option.symbol">
+            {{option.symbol}} | {{option.description}}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </form>
+
+  </div>
+  <a class="d-flex search-button px-3 justify-content-end" type="button" (click)="onSubmit()">
+    <i class="bi bi-search" style="font-size: 1.2rem"></i>
+  </a>
+  <a class="d-flex clear-button pe-4 justify-content-end" type="button" (click)="reset()">
+    <i class="bi bi-x-lg" style="font-size: 1.2rem"></i>
+  </a>
+</div>
+

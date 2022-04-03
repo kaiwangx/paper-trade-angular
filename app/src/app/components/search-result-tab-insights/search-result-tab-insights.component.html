@@ -1,0 +1,41 @@
+<div class="row w-100 py-5 mx-auto">
+  <div class="d-flex justify-content-center">
+    <h4 class="col-lg-6 d-flex justify-content-center">Social Sentiments</h4>
+  </div>
+  <div class="d-flex justify-content-center pt-3">
+    <div class="col-lg-8">
+      <table class="table">
+        <tbody>
+        <tr>
+          <th>{{_tickerData.companyDescription.name}}</th>
+          <th>Reddit</th>
+          <th>Twitter</th>
+        </tr>
+        <tr>
+          <th>Total Mentions</th>
+          <td>{{socialSentiments.reddit.total}}</td>
+          <td>{{socialSentiments.twitter.total}}</td>
+        </tr>
+        <tr>
+          <th>Positive Mentions</th>
+          <td>{{socialSentiments.reddit.positive}}</td>
+          <td>{{socialSentiments.twitter.positive}}</td>
+        </tr>
+        <tr>
+          <th>Negative Mentions</th>
+          <td>{{socialSentiments.reddit.negative}}</td>
+          <td>{{socialSentiments.twitter.negative}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <app-search-result-tab-insights-recommendation-trends [tickerData]="_tickerData"></app-search-result-tab-insights-recommendation-trends>
+    </div>
+    <div class="col-lg-6">
+      <app-search-result-tab-insights-earnings [tickerData]="_tickerData"></app-search-result-tab-insights-earnings>
+    </div>
+  </div>
+</div>

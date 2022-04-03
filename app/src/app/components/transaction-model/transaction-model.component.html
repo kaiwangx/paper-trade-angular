@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ticker}}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <p>
+    Current Price: {{currentPrice}}
+  </p>
+  <p>
+    Money in Wallet: ${{balance}}
+  </p>
+  <div class="d-flex">
+    <p class="my-auto pe-2">Quantity: </p>
+    <input type="number" class="form-control" [formControl]="quantity">
+  </div>
+  <p *ngIf="checkIfQuantityIsValid() > 0" [ngStyle]="{color: 'red'}" class="mt-4">
+    {{errorMessage[checkIfQuantityIsValid()]}}
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-success"
+          [disabled]="checkIfQuantityIsValid() > 0"
+          (click)="submitTransaction()">
+    <div class="px-2">
+      {{transactionType}}
+    </div>
+  </button>
+</div>

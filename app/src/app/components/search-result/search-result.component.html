@@ -1,0 +1,65 @@
+<div class="py-5 w-100">
+  <div *ngIf="isLoading; else tickerDetail" class="d-flex justify-content-center">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <ng-template #tickerDetail>
+    <div class="row">
+      <div class="col-4">
+        <h1 id="ticker" class="d-flex align-items-start">
+          {{tickerData.companyDescription.ticker}}
+          <ng-container *ngIf="tickerData.savedInWatchList; else EmptyStar">
+            <i class="bi bi-star-fill ps-2" style="font-size: 1.5rem; color: yellow" (click)="removeTickerFromWatchList()"></i>
+          </ng-container>
+          <ng-template #EmptyStar>
+            <i class="bi bi-star ps-2" style="font-size: 1.5rem" (click)="addTickerToWatchList()"></i>
+          </ng-template>
+          </h1>
+        <h3 id="ticker-name" style="color: gray">{{tickerData.companyDescription.name}}</h3>
+        <p id="ticker-exchange">{{tickerData.companyDescription.exchange}}</p>
+        <button type="button" class="btn btn-success" (click)="openBuyModel()">
+          <div class="px-2">
+            Buy
+          </div>
+        </button>
+        <ng-container *ngIf="inPortfolio">
+          <button type="button" class="btn btn-danger" (click)="openSellModel()">
+            <div class="px-2">
+              Sell
+            </div>
+          </button>
+        </ng-container>
+      </div>
+
+      <div class="col-4 justify-content-center">
+        <img id="ticker-logo" class="mx-auto d-block" src="{{tickerData.companyDescription.logo}}" alt="">
+      </div>
+
+      <div class="col-4">
+        <div [ngStyle]="{'color': tickerData.tickerColor }">
+          <h1 id="ticker-last-price" class="d-flex justify-content-end">
+            {{tickerData.tickerLastPrice.c | number: '0.2-2'}}
+          </h1>
+          <h3 id="ticker-price-change" class="d-flex justify-content-end">
+            <ng-container *ngIf="tickerData.tickerLastPrice.dp < 0; else caretUp">
+              <i class="bi bi-caret-down-fill"></i>
+            </ng-container>
+            <ng-template #caretUp>
+              <i class="bi bi-caret-up-fill"></i>
+            </ng-template>
+            {{tickerData.tickerLastPrice.d | number: '0.2-2'}}({{tickerData.tickerLastPrice.dp | number: '0.2-2'}}%)
+          </h3>
+        </div>
+        <p id="current-timestamp" class="d-flex justify-content-end">
+          {{tickerData.currentDate.format('YYYY-MM-DD HH:mm:ss')}}
+        </p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center" [ngStyle]="{'color': tickerData.marketIsOpen ? 'green' : 'red'}">
+      {{ tickerData.marketIsOpen ? "Market is Open" : ("Market Closed on " + (tickerData.lastStockDataTimeStamp.format('YYYY-MM-DD HH:mm:ss')))}}
+    </div>
+
+    <app-search-result-tabs [tickerData]="tickerData"></app-search-result-tabs>
+  </ng-template>
+</div>
+

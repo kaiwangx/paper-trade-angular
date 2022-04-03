@@ -1,0 +1,17 @@
+<div class="row w-100 mx-auto">
+  <ng-container *ngFor="let companyNew of tickerData.companyNewsWithGraph.slice(0, 20)">
+    <div class="card col-lg-5 py-lg-2 mx-auto mt-3" (click)="openNewsModel(companyNew)">
+      <div class="row g-0 my-auto">
+        <div class="col-lg-4 my-auto py-2">
+          <img src="{{companyNew.image}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-lg-8">
+          <div class="card-body">
+            <p class="card-text">{{companyNew.headline}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+</div>

@@ -1,0 +1,42 @@
+<div class="row w-100 py-5 mx-auto">
+  <div class="col-lg-6">
+    <div id="today-prices" class="px-lg-5">
+      <mat-list class="px-5 pb-5">
+        <mat-list-item> <p><b>High Price: </b>{{ _tickerData.tickerLastPrice.h | number: '0.2-2' }}</p></mat-list-item>
+        <mat-list-item> <p><b>Low Price:</b>  {{ _tickerData.tickerLastPrice.l | number: '0.2-2' }}</p></mat-list-item>
+        <mat-list-item> <p><b>Open Price:</b>  {{ _tickerData.tickerLastPrice.o | number: '0.2-2' }}</p></mat-list-item>
+        <mat-list-item> <p><b>Prev. Price:</b>  {{ _tickerData.tickerLastPrice.pc | number: '0.2-2' }}</p></mat-list-item>
+      </mat-list>
+    </div>
+
+    <h4 class="d-flex justify-content-center">
+      <u>About the company</u>
+    </h4>
+
+    <div id="company-description">
+      <mat-list class="px-5 py-5">
+        <mat-list-item> <p><b>IPO Start Date: </b>{{ _tickerData.companyDescription.ipo }}</p></mat-list-item>
+        <mat-list-item> <p><b>Industry: </b>  {{ _tickerData.companyDescription.finnhubIndustry }}</p></mat-list-item>
+        <mat-list-item> <p><b>Webpage: </b>  <a href="{{_tickerData.companyDescription.weburl}}" target="_blank">{{ _tickerData.companyDescription.weburl }}</a></p></mat-list-item>
+        <mat-list-item> <p><b>Company peers: </b></p> </mat-list-item>
+        <mat-list-item>
+          <p>
+            <ng-container *ngFor="let peer of _tickerData.companyPeers">
+              <a routerLink="/search/{{peer}}">{{peer}}, </a>
+            </ng-container>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+  </div>
+
+  <div class="col-lg-6 d-flex justify-content-center">
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [options]="chartOptions"
+      [constructorType]="'stockChart'"
+      style="width: 100%; height: 400px; display: block;"
+    ></highcharts-chart>
+  </div>
+</div>

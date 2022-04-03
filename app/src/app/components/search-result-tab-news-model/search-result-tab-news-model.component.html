@@ -1,0 +1,30 @@
+<div class="modal-header row align-items-start">
+  <div class="col">
+    <h2 class="modal-title">{{companyNew.source}}</h2>
+    <p class="modal-title" style="color:gray;"><b>{{getFormatDateFromUnix(companyNew.datetime)}}</b></p>
+  </div>
+
+  <div class="col d-flex justify-content-end ">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+
+</div>
+<div class="modal-body row">
+  <h4>{{companyNew.headline}}</h4>
+  <p>{{companyNew.summary}}</p>
+  <p>For more details click <a href="{{companyNew.url}}" target="_blank">here</a></p>
+
+  <div class="card">
+    <p class="my-2">Share</p>
+
+    <div class="d-flex justify-content-start">
+      <a href="https://twitter.com/intent/tweet?text={{companyNew.headline}}%0A{{companyNew.url}}"
+         target="_blank">
+        <img src="../../../assets/twitter-brands.svg">
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{companyNew.url}}" target="_blank" class="mx-2">
+        <img src="../../../assets/facebook-square-brands.svg">
+      </a>
+    </div>
+  </div>
+</div>

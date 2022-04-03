@@ -33,11 +33,14 @@ app.get('/latest_price/:ticker', (req, res) => {
         .then(response => res.send(response))
 })
 
-// autocomplete
+// autocomplete todo: check server fails
 app.get('/autocomplete/:query', (req, res) => {
     fetch(`https://finnhub.io/api/v1/search?q=${req.params["query"]}&token=${api_key}`)
         .then(response => response.json())
+        .then(response => response.result)
+        .then(response => response.filter(x => x.type === 'Common Stock' && !x.symbol.includes(".")))
         .then(response => res.send(response))
+    // res.send([`${req.params["query"]}`])
 })
 
 // company's news

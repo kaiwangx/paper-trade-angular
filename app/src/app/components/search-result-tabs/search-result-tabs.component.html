@@ -1,0 +1,21 @@
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Summary">
+    <ng-template matTabContent>
+      <app-search-result-tab-summary [tickerData] = "tickerData"></app-search-result-tab-summary>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Top News">
+    <app-search-result-tab-news [tickerData] = "tickerData"></app-search-result-tab-news>
+  </mat-tab>
+  <mat-tab label="Charts">
+    <ng-template matTabContent>
+      <app-search-result-tab-charts [tickerData] = "tickerData"></app-search-result-tab-charts>
+    </ng-template>
+
+  </mat-tab>
+  <mat-tab label="Insights">
+    <ng-template matTabContent>
+      <app-search-result-tab-insights [tickerData] = "tickerData"></app-search-result-tab-insights>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
