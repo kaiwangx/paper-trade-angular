@@ -5,7 +5,7 @@ import {map} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionService {
+export class BalanceService {
   key: string = "money"
   initialBalance: number = 25000
 
@@ -32,7 +32,4 @@ export class TransactionService {
   resetBalance(): void {
     this.setBalance(this.initialBalance)
   }
-
-
-
 }

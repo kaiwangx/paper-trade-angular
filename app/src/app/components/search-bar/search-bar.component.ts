@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { TickerAutoCompleteService } from "../../services/ticker-auto-complete.service";
-import { AutocompleteOption} from "../../interfaces/autocomplete-option";
-import { debounceTime } from "rxjs";
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {TickerAutoCompleteService} from "../../services/ticker-auto-complete.service";
+import {AutocompleteOption} from "../../interfaces/autocomplete-option";
+import {debounceTime} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-bar',
@@ -15,11 +15,14 @@ export class SearchBarComponent implements OnInit {
   tickerForm = this.fb.group({ticker: ['']})
   tickerAutocompleteOptions: AutocompleteOption[] = []
   isLoading: boolean = false
+  emptyTickerSubmitted: boolean
 
   constructor(private fb: FormBuilder,
               private tickerAutoCompleteService: TickerAutoCompleteService,
               private router: Router,
-  ) {}
+  ) {
+    this.emptyTickerSubmitted = false
+  }
 
   ngOnInit(): void {
     this.tickerForm.controls["ticker"].valueChanges
@@ -28,8 +31,13 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.tickerForm.controls['ticker'].value)
-    this.router.navigate(["search", this.tickerForm.controls['ticker'].value])
+    const value = this.tickerForm.controls['ticker'].value
+    if (value == "") {
+      this.emptyTickerSubmitted = true
+    } else {
+      this.emptyTickerSubmitted = false
+      this.router.navigate(["search", value])
+    }
   }
 
   reset() {
@@ -37,7 +45,7 @@ export class SearchBarComponent implements OnInit {
     this.router.navigate([''])
   }
 
-  private getTickerAutocompleteOptions(value: string): void{
+  private getTickerAutocompleteOptions(value: string): void {
     if (value.replace(/\s+/g, '') === "") {
       this.tickerAutocompleteOptions = []
       return

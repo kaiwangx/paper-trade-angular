@@ -1,17 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <a class="navbar-brand px-3" href="#">Stock Search</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand px-3" href="#" style="color:white">Stock Search</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarToggler"
+    aria-controls="navbarToggler"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    (click)="changeTogglerStatus()"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
+  <div class="navbar-collapse flex-row-reverse" [ngClass]="togglerStatus"  id="navbarToggler">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active px-3" routerLink="/search/home">
+      <a class="nav-item nav-link px-3" [ngClass]="activePage === 'home' ? 'active-page' : ''" type="button" (click)="redirect('home')" style="color:white">
         Search
       </a>
-      <a class="nav-item nav-link px-3" routerLink="/watchlist">
+      <a class="nav-item nav-link px-3" [ngClass]="activePage === 'watchList' ? 'active-page' : ''" type="button" (click)="redirect('watchList')" style="color:white">
         Watchlist
       </a>
-      <a class="nav-item nav-link px-3" routerLink="/portfolio">
+      <a class="nav-item nav-link px-3" [ngClass]="activePage === 'portfolio' ? 'active-page' : ''" type="button" (click)="redirect('portfolio')" style="color:white">
         Portfolio
       </a>
     </div>

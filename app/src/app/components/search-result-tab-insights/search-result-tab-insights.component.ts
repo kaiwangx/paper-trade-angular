@@ -25,7 +25,6 @@ export class SearchResultTabInsightsComponent implements OnInit {
   @Input() set tickerData(newTickerData: CompanyData) {
     this._tickerData = newTickerData
     this.updateSocialSentiments()
-    console.log(this.socialSentiments)
     // this.updateChartOptions()
   }
   constructor() {

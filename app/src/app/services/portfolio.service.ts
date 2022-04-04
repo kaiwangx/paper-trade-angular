@@ -27,6 +27,10 @@ export class PortfolioService {
     this.set(this.get().filter(x => x !== portfolioItem))
   }
 
+  removeByTicker(ticker: string): void {
+    this.set(this.get().filter(x => x.companyDescription.ticker !== ticker))
+  }
+
   includes(ticker: string): boolean {
     return this.get().some(x => x.companyDescription.ticker === ticker)
   }
@@ -35,4 +39,14 @@ export class PortfolioService {
     return this.get().find(x => x.companyDescription.ticker === ticker)
   }
 
+  update(portfolioItem: PortfolioItem): void {
+    this.removeByTicker(portfolioItem.companyDescription.ticker)
+    if (portfolioItem.quantity > 0) {
+      this.add(portfolioItem)
+    }
+  }
+
+  reset(): void {
+    localStorage.removeItem(this.key)
+  }
 }

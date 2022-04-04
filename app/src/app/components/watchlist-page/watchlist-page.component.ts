@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class WatchlistPageComponent implements OnInit {
   watchlist: WatchlistItem[] = []
-  isLoading: boolean = false
+  isLoading: boolean = true
 
   constructor(private watchlistService: WatchlistService,
               private tickerSearchService: TickerSearchService,
@@ -39,8 +39,11 @@ export class WatchlistPageComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         this.watchlist.push(res[i])
       }
-      this.isLoading = true
+      this.isLoading = false
     })
+    if (watchlist.length == 0) {
+      this.isLoading = false
+    }
   }
 
   removeWatchList(ticker: string): void {

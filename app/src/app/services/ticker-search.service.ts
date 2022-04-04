@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {forkJoin, Observable, map, of, tap, find, finalize, mergeMap} from "rxjs";
 import { HttpClient } from '@angular/common/http';
-import { environment } from "../../environments/environment";
 
 // Interfaces
 import { CompanyLastPrice } from "../interfaces/company-last-price";
@@ -15,44 +14,15 @@ import {Dayjs} from "dayjs";
 import {CompanySocialSentiment} from "../interfaces/company-social-sentiments";
 import {CompanyRecommendationTrendsItem} from "../interfaces/company-recommendation-trends-item";
 import {CompanyEarningsItem} from "../interfaces/company-earnings-item";
-import {WatchlistService} from "./watchlist.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TickerSearchService {
-  serverURL = environment.serverURL
-  cache: boolean = false
+  key = "lastTickerSearched"
+  serverURL = "https://paper-trade-nodejs.wl.r.appspot.com/"
   tickerData: CompanyData = {} as CompanyData
-  constructor(private http: HttpClient,
-              private watchListService: WatchlistService) { }
-
-  getTickerData(ticker: string): Observable<CompanyData> {
-
-    return this.getTickerLastPrice(ticker).pipe(
-      mergeMap(tickerLastPrice => {
-        return forkJoin([
-          this.getCompanyDescription(ticker),
-          of(tickerLastPrice),
-          this.getCompanyPeers(ticker),
-          this.getCompanyHourlyData(ticker, tickerLastPrice.t),
-          this.getCompanyNews(ticker),
-          this.getCompanyHistoricalDataLastTwoYear(ticker),
-          this.getCompanySentiments(ticker),
-          this.getCompanyRecommendationTrends(ticker),
-          this.getCompanyEarnings(ticker),
-        ])
-      }),
-      tap(res => {
-        this.tickerData = new CompanyData(
-          res[0], res[1], res[2],
-          res[3], res[4], res[5],
-          res[6], res[7], res[8],
-          this.watchListService)
-      }),
-      map(() => {return this.tickerData})
-    )
-  }
+  constructor(private http: HttpClient) { }
 
   getCompanyDescription(ticker: string): Observable<CompanyDescription> {
     return this.http.get<CompanyDescription>(`${this.serverURL}/description/${ticker}`)
@@ -102,5 +72,19 @@ export class TickerSearchService {
 
   getCompanyEarnings(ticker: string): Observable<CompanyEarningsItem[]> {
     return this.http.get<CompanyEarningsItem[]>(`${this.serverURL}/earnings/${ticker}`)
+  }
+
+  save(tickerData: CompanyData): void {
+    localStorage.setItem(this.key, JSON.stringify(tickerData))
+  }
+
+  get(): CompanyData | null {
+    let cachedData = localStorage.getItem(this.key)
+    return cachedData === null ? null : JSON.parse(cachedData)
+  }
+
+  retrieve(ticker: string): CompanyData | null {
+    let cachedData = this.get()
+    return (cachedData === null || cachedData.companyDescription.ticker !== ticker) ? null : cachedData
   }
 }

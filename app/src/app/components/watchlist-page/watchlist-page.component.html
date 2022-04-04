@@ -1,6 +1,6 @@
 <div class="col-lg-10 mx-auto">
   <h1 class="px-2 py-lg-5 py-3 my-0">My Watchlist</h1>
-  <ng-container *ngIf="isLoading">
+  <ng-container *ngIf="!isLoading">
     <ng-container *ngIf="watchlist.length == 0; else Watchlist">
       <ngb-alert [dismissible]="false">
         Currently you don't have any stock in your watchlist.

@@ -1,0 +1,23 @@
+.wrapper {
+  background: linear-gradient(transparent, rgb(253,253,253)), url('../assets/background-graph.jpg');
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  min-height: 100%;
+}
+
+a{
+  text-decoration: none;
+}
+.page-body {
+  flex-grow: 1;
+}
+
+.page-footer {
+  max-height: 60px;
+  bottom: 0;
+  width: 100%;
+  background-color: lightgray;
+  text-align: center;
+  flex-shrink: 0;
+}

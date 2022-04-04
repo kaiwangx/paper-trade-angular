@@ -4,26 +4,36 @@
 </div>
 <div class="modal-body">
   <p>
-    Current Price: {{currentPrice}}
+    Current Price: {{currentPrice | number: '0.2-2'}}
   </p>
   <p>
-    Money in Wallet: ${{balance}}
+    Money in Wallet: ${{balance  | number: '0.2-2'}}
   </p>
   <div class="d-flex">
     <p class="my-auto pe-2">Quantity: </p>
-    <input type="number" class="form-control" [formControl]="quantity">
+    <div class="col-xs-1">
+      <input type="number" class="form-control" [formControl]="quantity">
+    </div>
+
   </div>
   <p *ngIf="checkIfQuantityIsValid() > 0" [ngStyle]="{color: 'red'}" class="mt-4">
     {{errorMessage[checkIfQuantityIsValid()]}}
   </p>
 </div>
 <div class="modal-footer">
-  <button type="button"
-          class="btn btn-success"
-          [disabled]="checkIfQuantityIsValid() > 0"
-          (click)="submitTransaction()">
-    <div class="px-2">
-      {{transactionType}}
+  <div class="row w-100">
+    <div class="col-6 d-flex align-self-center">
+      Total: {{calculateTotal() | number: '0.2-2'}}
     </div>
-  </button>
+    <div class="col-6 d-flex justify-content-end">
+      <button type="button"
+              class="btn btn-success"
+              [disabled]="checkIfQuantityIsValid() > 0"
+              (click)="submitTransaction()">
+        <div class="px-2">
+          {{transactionType}}
+        </div>
+      </button>
+    </div>
+  </div>
 </div>

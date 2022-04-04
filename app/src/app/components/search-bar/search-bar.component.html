@@ -1,4 +1,4 @@
-<div class="search-bar d-flex">
+<div class="search-bar d-flex container col-xm-5" style="max-width: 600px">
   <div class="search-form ps-3 me-auto">
     <form [formGroup]="tickerForm" (ngSubmit)="onSubmit()">
       <input class="form-control shadow-none"
@@ -8,13 +8,14 @@
              placeholder="Enter stock ticker symbol"
              formControlName="ticker"
              [matAutocomplete]="auto"
+             style="background: transparent"
       >
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngIf="isLoading">
           <mat-spinner diameter="30"></mat-spinner>
         </mat-option>
         <ng-container *ngIf="!isLoading">
-          <mat-option *ngFor="let option of tickerAutocompleteOptions" [value]="option.symbol">
+          <mat-option *ngFor="let option of tickerAutocompleteOptions" [value]="option.symbol" (click)="onSubmit()">
             {{option.symbol}} | {{option.description}}
           </mat-option>
         </ng-container>
@@ -29,4 +30,10 @@
     <i class="bi bi-x-lg" style="font-size: 1.2rem"></i>
   </a>
 </div>
+
+<ng-container *ngIf="emptyTickerSubmitted && this.tickerForm.controls['ticker'].value === ''">
+  <ngb-alert class="my-4" type="danger" [dismissible]="true">
+    Please enter a valid ticker
+  </ngb-alert>
+</ng-container>
 
