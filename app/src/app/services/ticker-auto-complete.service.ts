@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {AutocompleteOption} from "../interfaces/autocomplete-option";
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TickerAutoCompleteService {
-  serverURL = "https://paper-trade-nodejs.wl.r.appspot.com/"
+  serverURL = environment.serverURL
   constructor(private http: HttpClient) { }
 
   getTickerAutocompleteList(ticker: string): Observable<AutocompleteOption[]>{

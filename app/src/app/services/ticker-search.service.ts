@@ -14,17 +14,19 @@ import {Dayjs} from "dayjs";
 import {CompanySocialSentiment} from "../interfaces/company-social-sentiments";
 import {CompanyRecommendationTrendsItem} from "../interfaces/company-recommendation-trends-item";
 import {CompanyEarningsItem} from "../interfaces/company-earnings-item";
+import {environment} from "../../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TickerSearchService {
   key = "lastTickerSearched"
-  serverURL = "https://paper-trade-nodejs.wl.r.appspot.com/"
+  serverURL = environment.serverURL
   tickerData: CompanyData = {} as CompanyData
   constructor(private http: HttpClient) { }
 
   getCompanyDescription(ticker: string): Observable<CompanyDescription> {
+
     return this.http.get<CompanyDescription>(`${this.serverURL}/description/${ticker}`)
   }
 

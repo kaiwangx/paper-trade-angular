@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary px-2">
   <a class="navbar-brand px-3" href="#" style="color:white">Stock Search</a>
   <button
     class="navbar-toggler"
@@ -14,13 +14,22 @@
   </button>
   <div class="navbar-collapse flex-row-reverse" [ngClass]="togglerStatus"  id="navbarToggler">
     <div class="navbar-nav">
-      <a class="nav-item nav-link px-3" [ngClass]="activePage === 'home' ? 'active-page' : ''" type="button" (click)="redirect('home')" style="color:white">
+      <a class="nav-item nav-link px-3"  type="button"
+         routerLink = "{{getHomeLink()}}" routerLinkActive="router-link-active"
+         (click)="changeTogglerStatus()"
+         style="color:white; text-align: right">
         Search
       </a>
-      <a class="nav-item nav-link px-3" [ngClass]="activePage === 'watchList' ? 'active-page' : ''" type="button" (click)="redirect('watchList')" style="color:white">
+      <a class="nav-item nav-link px-3"  type="button"
+         routerLink="/watchlist" routerLinkActive="router-link-active"
+         (click)="changeTogglerStatus()"
+         style="color:white; text-align: right">
         Watchlist
       </a>
-      <a class="nav-item nav-link px-3" [ngClass]="activePage === 'portfolio' ? 'active-page' : ''" type="button" (click)="redirect('portfolio')" style="color:white">
+      <a class="nav-item nav-link px-3" type="button"
+         routerLink="/portfolio" routerLinkActive="router-link-active"
+         (click)="changeTogglerStatus()"
+         style="color:white; text-align: right">
         Portfolio
       </a>
     </div>

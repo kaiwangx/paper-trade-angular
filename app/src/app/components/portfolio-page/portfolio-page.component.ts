@@ -21,7 +21,6 @@ export class PortfolioPageComponent implements OnInit {
 
   portfolioList: PortfolioItem[] = []
   balance: number = 0
-  displayColor: string = 'black'
   isLoading: boolean = true
   alertMessage: string = ""
   alertType: string = 'success'
@@ -57,7 +56,7 @@ export class PortfolioPageComponent implements OnInit {
               currentPrice: _currentPrice,
               change: _currentPrice - portfolioItem.averageCostPerShare,
               marketValue: _currentPrice * portfolioItem.quantity,
-              displayColor: Utils.getTickerColor(portfolioItem.averageCostPerShare - _currentPrice)
+              displayColor: Utils.getTickerColor(_currentPrice - portfolioItem.averageCostPerShare,)
             }
           })
         )
@@ -65,7 +64,9 @@ export class PortfolioPageComponent implements OnInit {
     forkJoin(portfolioList).subscribe(res => {
       for (let i = 0; i < res.length; i++) {
         this.portfolioList.push(res[i])
+        console.log(res[i].displayColor)
       }
+      this.portfolioList.sort()
       this.isLoading = false
       // this.alertEvent.next(this.alertMessage)
     })
@@ -106,7 +107,7 @@ export class PortfolioPageComponent implements OnInit {
   }
 
   reset() {
-    this.portfolioService.reset()
-    this.balanceService.resetBalance()
+    // this.portfolioService.reset()
+    // this.balanceService.resetBalance()
   }
 }

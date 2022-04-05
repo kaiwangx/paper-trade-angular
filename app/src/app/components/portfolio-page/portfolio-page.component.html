@@ -7,7 +7,7 @@
 
     <ng-container *ngIf="!isLoading">
       <ng-container *ngIf="portfolioList.length === 0; else Watchlist">
-        <ngb-alert [dismissible]="false">
+        <ngb-alert [dismissible]="false" >
           Currently you don't have any stock.
         </ngb-alert>
       </ng-container>
@@ -42,21 +42,31 @@
               <div class="col-lg-6">
                 <div class="row">
                   <div class="col-8">Change:</div>
-                  <div class="col-4 d-flex justify-content-end" [ngStyle]="{color:displayColor}">{{portfolioItem.change | number:'0.2-2'}}</div>
+                  <div class="col-4 d-flex justify-content-end" [ngStyle]="{color:portfolioItem.displayColor}">
+                    <ng-container *ngIf="portfolioItem.change !== 0">
+                      <ng-container *ngIf="portfolioItem.change < 0; else caretUp">
+                        <i class="bi bi-caret-down-fill"></i>
+                      </ng-container>
+                      <ng-template #caretUp>
+                        <i class="bi bi-caret-up-fill"></i>
+                      </ng-template>
+                    </ng-container>
+                    {{portfolioItem.change | number:'0.2-2'}}
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-8">Current Price:</div>
-                  <div class="col-4 d-flex justify-content-end" [ngStyle]="{color:displayColor}">{{portfolioItem.currentPrice | number:'0.2-2'}}</div>
+                  <div class="col-4 d-flex justify-content-end" [ngStyle]="{color:portfolioItem.displayColor}">{{portfolioItem.currentPrice | number:'0.2-2'}}</div>
                 </div>
                 <div class="row">
                   <div class="col-8">Market Value:</div>
-                  <div class="col-4 d-flex justify-content-end" [ngStyle]="{color:displayColor}">{{portfolioItem.marketValue | number:'0.2-2'}}</div>
+                  <div class="col-4 d-flex justify-content-end" [ngStyle]="{color:portfolioItem.displayColor}">{{portfolioItem.marketValue | number:'0.2-2'}}</div>
                 </div>
               </div>
             </div>
-            <div class="card-footer text-muted py-3">
+            <div class="card-footer text-muted py-3 d-flex justify-content-end">
               <div class="d-flex">
-                <button type="button" class="btn btn-success" (click)="openBuyModel(portfolioItem)">
+                <button type="button" class="btn btn-primary" (click)="openBuyModel(portfolioItem)">
                   <div class="px-2">
                     Buy
                   </div>

@@ -11,41 +11,20 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class NavbarComponent implements OnInit {
 
   togglerStatus: string = "collapse"
-  activePage: string = "home"
+  // activePage: string = "home"
 
   constructor(private tickerSearchService: TickerSearchService,
-              private router: Router,
-              private activeRoute: ActivatedRoute,) { }
+              private router: Router) { }
 
   ngOnInit(): void {}
 
   changeTogglerStatus(): void {
     this.togglerStatus = this.togglerStatus === "collapse" ? "" : "collapse"
-    console.log(this.togglerStatus)
   }
 
-  getHomeRouterLink(): string {
+  getHomeLink(): string {
     let cache: CompanyData | null = this.tickerSearchService.get()
     return cache === null ? "/search/home" : `/search/${cache.companyDescription.ticker}`
-  }
 
-  redirect(to: string) {
-    this.activePage = to
-    if (to == "home") {
-      let cache: CompanyData | null = this.tickerSearchService.get()
-      this.router.navigateByUrl(cache === null ? "/search/home" : `/search/${cache.companyDescription.ticker}`).then(r => console.log(r))
-    } else if (to == "watchList") {
-      this.router.navigateByUrl("/watchlist").then(result => {
-        if (!result) {
-          console.log(result)
-        }
-      })
-    } else {
-      this.router.navigateByUrl("/portfolio").then(result => {
-        if (!result) {
-          console.log(result)
-        }
-      })
-    }
   }
 }

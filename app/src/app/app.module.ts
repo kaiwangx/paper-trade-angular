@@ -41,7 +41,6 @@ import { SearchResultTabInsightsRecommendationTrendsComponent } from './componen
 import { SearchResultTabInsightsEarningsComponent } from './components/search-result-tab-insights-earnings/search-result-tab-insights-earnings.component';
 import { TransactionModelComponent } from './components/transaction-model/transaction-model.component';
 import { SearchResultTabNewsModelComponent } from './components/search-result-tab-news-model/search-result-tab-news-model.component';
-import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +61,6 @@ import { AlertComponent } from './components/alert/alert.component';
     PortfolioPageComponent,
     TransactionModelComponent,
     SearchResultTabNewsModelComponent,
-    AlertComponent,
   ],
   imports: [
     BrowserModule,

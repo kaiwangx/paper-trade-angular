@@ -3,7 +3,7 @@ import cors from "cors"
 import fetch from 'node-fetch'
 
 const app = express()
-const port = 3000
+const port = 8080
 const api_key = 'c84l0gqad3i9u79ha73g'
 
 app.use(cors())
@@ -86,6 +86,9 @@ app.get('/earnings/:ticker', (req, res) => {
         })
 })
 
-app.listen(port, () => {
+app.listen(8080, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+
+export default app

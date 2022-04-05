@@ -1,31 +1,42 @@
 <div class="col-lg-10 mx-auto">
-  <h1 class="px-2 py-lg-5 py-3 my-0">My Watchlist</h1>
-  <ng-container *ngIf="!isLoading">
-    <ng-container *ngIf="watchlist.length == 0; else Watchlist">
-      <ngb-alert [dismissible]="false">
-        Currently you don't have any stock in your watchlist.
-      </ngb-alert>
-    </ng-container>
-    <ng-template #Watchlist>
-      <ng-container *ngFor="let listItem of watchlist">
-        <div class="card mb-3">
-          <div class="d-flex justify-content-end" type="button" (click)="removeWatchList(listItem.companyDescription.ticker)">
-            <i class="bi bi-x-lg px-1 py-1"></i>
-          </div>
-          <div class="row card-body px-lg-4 pt-0" type="button" (click)="redirect(listItem.companyDescription.ticker)">
-            <div class="col">
-              <h2>{{listItem.companyDescription.ticker}}</h2>
-              <h5>{{listItem.companyDescription.name}}</h5>
+  <div class="px-2 pt-lg-5 pt-3 my-0">
+    <h1 class="px-2 py-lg-5 py-3 my-0">My Watchlist</h1>
+    <ng-container *ngIf="!isLoading">
+      <ng-container *ngIf="watchlist.length == 0; else Watchlist">
+        <ngb-alert [dismissible]="false">
+          Currently you don't have any stock in your watchlist.
+        </ngb-alert>
+      </ng-container>
+      <ng-template #Watchlist>
+        <ng-container *ngFor="let listItem of watchlist">
+          <div class="card mb-3">
+            <div class="d-flex justify-content-end" type="button" (click)="removeWatchList(listItem.companyDescription.ticker)">
+              <i class="bi bi-x-lg px-1 py-1"></i>
             </div>
-            <div class="col d-flex justify-content-end" [ngStyle]="{color: listItem.displayColor}">
-              <div>
-                <h2>{{listItem.companyLastPrice.c}}</h2>
-                <h5>{{listItem.companyLastPrice.d}} ({{listItem.companyLastPrice.dp}}%)</h5>
+            <div class="row card-body px-lg-4 pt-0" type="button" (click)="redirect(listItem.companyDescription.ticker)">
+              <div class="col">
+                <h2>{{listItem.companyDescription.ticker}}</h2>
+                <h5>{{listItem.companyDescription.name}}</h5>
+              </div>
+              <div class="col d-flex justify-content-end" [ngStyle]="{color: listItem.displayColor}">
+                <div>
+                  <h2 class="d-flex justify-content-end">{{listItem.companyLastPrice.c | number: '0.2-2'}}</h2>
+                  <h5 class="d-flex justify-content-end">
+                    <ng-container *ngIf="listItem.companyLastPrice.dp !== 0">
+                      <ng-container *ngIf="listItem.companyLastPrice.dp < 0; else caretUp">
+                        <i class="bi bi-caret-down-fill"></i>
+                      </ng-container>
+                      <ng-template #caretUp>
+                        <i class="bi bi-caret-up-fill"></i>
+                      </ng-template>
+                    </ng-container>
+                    {{listItem.companyLastPrice.d}} ({{listItem.companyLastPrice.dp | number: '0.2-2'}}%)</h5>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </ng-container>
-    </ng-template>
-  </ng-container>
+        </ng-container>
+      </ng-template>
+    </ng-container>
+  </div>
 </div>

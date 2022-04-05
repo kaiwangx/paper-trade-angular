@@ -26,7 +26,7 @@ export class TransactionModelComponent implements OnInit {
     ["ok",
       "Please enter a valid quantity!",
       "Not enough money in wallet!",
-      "You cannot sell the stocks that you don't"]
+      "You cannot sell the stocks that you don't have!"]
 
 
   constructor(public activeModal: NgbActiveModal,
@@ -92,11 +92,12 @@ export class TransactionModelComponent implements OnInit {
       return 1
     } else if (this.transactionType === "Buy" && quantity * this.currentPrice > this.balance) {
       return 2
-    } else if (this.transactionType === "Sell" && this.quantity < quantity) {
+    } else if (this.transactionType === "Sell" && this.currentQuantity < quantity) {
       return 3
     }
     return 0
   }
+
 
   calculateTotal(): number {
     return this.quantity.value * this.currentPrice

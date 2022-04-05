@@ -4,7 +4,7 @@
       <input class="form-control shadow-none"
              id="ticker"
              type="text"
-             size="25"
+             size="45"
              placeholder="Enter stock ticker symbol"
              formControlName="ticker"
              [matAutocomplete]="auto"
@@ -24,10 +24,10 @@
 
   </div>
   <a class="d-flex search-button px-3 justify-content-end" type="button" (click)="onSubmit()">
-    <i class="bi bi-search" style="font-size: 1.2rem"></i>
+    <i class="bi bi-search" type="button" style="font-size: 1.4rem; color:#1e2099"></i>
   </a>
   <a class="d-flex clear-button pe-4 justify-content-end" type="button" (click)="reset()">
-    <i class="bi bi-x-lg" style="font-size: 1.2rem"></i>
+    <i class="bi bi-x-lg" type="button" style="font-size: 1.3rem; color:#1e2099"></i>
   </a>
 </div>
 

@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {TickerSearchService} from "../../services/ticker-search.service";
 import {CompanyData} from "../../interfaces/company-data";
 import {WatchlistService} from "../../services/watchlist.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlert, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PortfolioService} from "../../services/portfolio.service";
 import {TransactionModelComponent} from "../transaction-model/transaction-model.component";
 import {debounceTime, forkJoin, map, mergeMap, Observable, of, Subject, tap} from "rxjs";
@@ -28,6 +28,9 @@ export class SearchResultComponent implements OnInit {
   inWatchlist!: boolean
   refreshEvent!: number
 
+  @ViewChild('alert', {static: false}) alert!: NgbAlert;
+  private alertEvent: Subject<string> = new Subject<string>();
+
   constructor(private route: ActivatedRoute,
               private tickerSearchService: TickerSearchService,
               private watchListService: WatchlistService,
@@ -40,6 +43,20 @@ export class SearchResultComponent implements OnInit {
     this.route.paramMap.subscribe(params => this.getTickerData(String(this.route.snapshot.paramMap.get('ticker'))))
     if (this.isvalidData) {
       this.refreshEvent = setInterval(() => this.updateTickerData(), 15*1000)
+    }
+
+    this.alertEvent.subscribe((message) => this.alertMessage = message)
+    this.alertEvent.pipe(debounceTime(3000)).subscribe(() => {
+      console.log("close")
+      if (this.alert) {
+        this.alert.close();
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    if (this.refreshEvent) {
+      clearInterval(this.refreshEvent);
     }
   }
 
@@ -57,12 +74,20 @@ export class SearchResultComponent implements OnInit {
           ])
         })
       ).subscribe(res => {
+        let _currentDate = dayjs()
+        let _lastStockDataTimeStamp = dayjs.unix(res[0].t)
         this.tickerData.tickerLastPrice = res[0]
         this.tickerData.companyHourlyData = res[1]
-    })
+        this.tickerData.currentDate = _currentDate.format('YYYY-MM-DD HH:mm:ss')
+        this.tickerData.marketIsOpen = _currentDate.diff(_lastStockDataTimeStamp, 'minutes') < 5
+        this.tickerData.tickerColor = Utils.getTickerColor(res[0].dp)
+        this.tickerData.lastStockDataTimeStamp = _lastStockDataTimeStamp.format('YYYY-MM-DD HH:mm:ss')
+        this.tickerSearchService.save(this.tickerData)
+      })
   }
 
   getTickerData(ticker: string): void {
+    this.alertMessage = ""
     this.isvalidData = true
     this.isLoading = true
     let cachedData: CompanyData | null = this.tickerSearchService.retrieve(ticker)
@@ -126,6 +151,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   updateTickerStatus() {
+    this.alertMessage = ""
     this.updatePortfolioStatus()
     this.updateWatchlistStatus()
   }
@@ -148,15 +174,15 @@ export class SearchResultComponent implements OnInit {
   addTickerToWatchList(): void {
     this.inWatchlist = true
     this.watchListService.add(this.tickerData.companyDescription.ticker)
-    this.alertMessage = `${this.tickerData.companyDescription.ticker} added to Watchlist`
     this.alertType = "success"
+    this.alertEvent.next(`${this.tickerData.companyDescription.ticker} added to Watchlist`)
   }
 
   removeTickerFromWatchList(): void {
     this.inWatchlist = false
     this.watchListService.remove(this.tickerData.companyDescription.ticker)
-    this.alertMessage = `${this.tickerData.companyDescription.ticker} removed from Watchlist`
     this.alertType = "danger"
+    this.alertEvent.next(`${this.tickerData.companyDescription.ticker} removed from Watchlist`)
   }
 
   openTransactionModel(type: string) {
@@ -170,7 +196,7 @@ export class SearchResultComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       this.alertType = (type === "Buy") ? "success" : "danger"
-      this.alertMessage = this.tickerData.companyDescription.ticker + (type === "Buy" ? " bought " : " sold ") + "successfully"
+      this.alertEvent.next(this.tickerData.companyDescription.ticker + (type === "Buy" ? " bought " : " sold ") + "successfully")
       this.updatePortfolioStatus()
     }, (reason) => {
       // on dismiss
