@@ -7,7 +7,7 @@ Papar Trade is a single-page application with responsive design that reproduces 
 https://paper-trade-angular.wl.r.appspot.com/
 
 ## Languages, Frameworks and Libraries
-Languages: TypeScript, JavaScript, HTML, css
+Languages: TypeScript, JavaScript, HTML, CSS
 
 Frameworks: Angular, Express.js, Bootstrap
 
