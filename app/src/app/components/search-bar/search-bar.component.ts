@@ -4,6 +4,7 @@ import {TickerAutoCompleteService} from "../../services/ticker-auto-complete.ser
 import {AutocompleteOption} from "../../interfaces/autocomplete-option";
 import {debounceTime} from "rxjs";
 import {Router} from "@angular/router";
+import {TickerSearchService} from "../../services/ticker-search.service";
 
 @Component({
   selector: 'app-search-bar',
@@ -20,6 +21,7 @@ export class SearchBarComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private tickerAutoCompleteService: TickerAutoCompleteService,
               private router: Router,
+              private tickerSearchService: TickerSearchService
   ) {
     this.emptyTickerSubmitted = false
   }
@@ -43,6 +45,7 @@ export class SearchBarComponent implements OnInit {
   reset() {
     this.tickerForm.controls['ticker'].reset('')
     this.router.navigate([''])
+    this.tickerSearchService.reset()
   }
 
   private getTickerAutocompleteOptions(value: string): void {

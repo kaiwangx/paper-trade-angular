@@ -89,4 +89,8 @@ export class TickerSearchService {
     let cachedData = this.get()
     return (cachedData === null || cachedData.companyDescription.ticker !== ticker) ? null : cachedData
   }
+
+  reset(): void {
+    localStorage.removeItem(this.key)
+  }
 }

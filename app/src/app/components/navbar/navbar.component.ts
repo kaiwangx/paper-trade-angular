@@ -13,8 +13,7 @@ export class NavbarComponent implements OnInit {
   togglerStatus: string = "collapse"
   // activePage: string = "home"
 
-  constructor(private tickerSearchService: TickerSearchService,
-              private router: Router) { }
+  constructor(private tickerSearchService: TickerSearchService) { }
 
   ngOnInit(): void {}
 
