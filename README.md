@@ -1,9 +1,9 @@
-# paper-trade
+# paper-trade-angular
 
 ## Description
 Papar Trade is a single-page application with responsive design that reproduces behavior and features of a stock market. A user may practice trading stocks without financial risk. It embedded features like stock ticker auto-completes, real-time stock data & charts, watchlists and simulated transactions.
 
-## Live-view
+## Live view
 https://paper-trade-angular.wl.r.appspot.com/
 
 ## Languages, Frameworks and Libraries
@@ -11,7 +11,7 @@ Languages: TypeScript, JavaScript, HTML, CSS
 
 Frameworks: Angular, Express.js, Bootstrap
 
-Libraries: Highcharts stock, ng-bootstrap, Angular Material UI, Finnhub
+Libraries: Highcharts stock, ng-bootstrap, Angular Material UI
 
 APIs: Finnhub
 
