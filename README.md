@@ -11,7 +11,7 @@ Languages: TypeScript, JavaScript, HTML, CSS
 
 Frameworks: Angular, Express.js, Bootstrap
 
-Libraries: Highcharts stock, ng-bootstrap, Angular Material UI, Finnhub
+Libraries: Highcharts stock, ng-bootstrap, Angular Material UI
 
 APIs: Finnhub
 
