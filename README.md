@@ -1,4 +1,4 @@
-# paper-trade
+# paper-trade-angular
 
 ## Description
 Papar Trade is a single-page application with responsive design that reproduces behavior and features of a stock market. A user may practice trading stocks without financial risk. It embedded features like stock ticker auto-completes, real-time stock data & charts, watchlists and simulated transactions.
