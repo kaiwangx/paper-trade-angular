@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CompanyData} from "../../../../interfaces/company-data";
+import {CompanyData} from "../../../../../interfaces/company-data";
 import * as Highcharts from 'highcharts'
-import {CompanyEarningsItem} from "../../../../interfaces/company-earnings-item";
+import {CompanyEarningsItem} from "../../../../../interfaces/company-earnings-item";
 
 @Component({
   selector: 'app-search-result-tab-insights-earnings',

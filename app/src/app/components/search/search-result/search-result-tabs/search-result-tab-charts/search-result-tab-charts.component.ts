@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CompanyData} from "../../../../interfaces/company-data";
+import {CompanyData} from "../../../../../interfaces/company-data";
 import * as dayjs from "dayjs";
 import * as Highcharts from 'highcharts/highstock';
 import IndicatorsCore from "highcharts/indicators/indicators";

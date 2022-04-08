@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CompanyData} from "../../../../interfaces/company-data";
+import {CompanyData} from "../../../../../interfaces/company-data";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {CompanyNewItem} from "../../../../interfaces/company-new-item";
+import {CompanyNewItem} from "../../../../../interfaces/company-new-item";
 import {
   SearchResultTabNewsModelComponent
 } from "../search-result-tab-news-model/search-result-tab-news-model.component";

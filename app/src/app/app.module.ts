@@ -33,14 +33,14 @@ import { DummyComponent } from './components/dummy/dummy.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatListModule } from "@angular/material/list";
 import { SearchResultTabsComponent } from './components/search/search-result/search-result-tabs/search-result-tabs.component';
-import { SearchResultTabSummaryComponent } from './components/search/search-result/search-result-tab-summary/search-result-tab-summary.component';
-import { SearchResultTabNewsComponent } from './components/search/search-result/search-result-tab-news/search-result-tab-news.component';
-import { SearchResultTabChartsComponent } from './components/search/search-result/search-result-tab-charts/search-result-tab-charts.component';
-import { SearchResultTabInsightsComponent } from './components/search/search-result/search-result-tab-insights/search-result-tab-insights.component';
-import { SearchResultTabInsightsRecommendationTrendsComponent } from './components/search/search-result/search-result-tab-insights-recommendation-trends/search-result-tab-insights-recommendation-trends.component';
-import { SearchResultTabInsightsEarningsComponent } from './components/search/search-result/search-result-tab-insights-earnings/search-result-tab-insights-earnings.component';
+import { SearchResultTabSummaryComponent } from './components/search/search-result/search-result-tabs/search-result-tab-summary/search-result-tab-summary.component';
+import { SearchResultTabNewsComponent } from './components/search/search-result/search-result-tabs/search-result-tab-news/search-result-tab-news.component';
+import { SearchResultTabChartsComponent } from './components/search/search-result/search-result-tabs/search-result-tab-charts/search-result-tab-charts.component';
+import { SearchResultTabInsightsComponent } from './components/search/search-result/search-result-tabs/search-result-tab-insights/search-result-tab-insights.component';
+import { SearchResultTabInsightsRecommendationTrendsComponent } from './components/search/search-result/search-result-tabs/search-result-tab-insights-recommendation-trends/search-result-tab-insights-recommendation-trends.component';
+import { SearchResultTabInsightsEarningsComponent } from './components/search/search-result/search-result-tabs/search-result-tab-insights-earnings/search-result-tab-insights-earnings.component';
 import { TransactionModelComponent } from './components/transaction-model/transaction-model.component';
-import { SearchResultTabNewsModelComponent } from './components/search/search-result/search-result-tab-news-model/search-result-tab-news-model.component';
+import { SearchResultTabNewsModelComponent } from './components/search/search-result/search-result-tabs/search-result-tab-news-model/search-result-tab-news-model.component';
 
 @NgModule({
   declarations: [
