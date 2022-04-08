@@ -3,11 +3,11 @@ import {WatchlistService} from "../../services/watchlist.service";
 import {TickerSearchService} from "../../services/ticker-search.service";
 import {forkJoin, of, map, Observable} from "rxjs";
 import {WatchlistItem} from "../../interfaces/watchlist-item";
-import {getTickerDisplayColor} from "../../../utils/get-ticker-display-color";
+import {Utils} from "../../../utils/utils";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-watchlist-page',
+  selector: 'app-watchlist',
   templateUrl: './watchlist-page.component.html',
   styleUrls: ['./watchlist-page.component.css'],
 })
@@ -31,7 +31,7 @@ export class WatchlistPageComponent implements OnInit {
           return {
             companyDescription: res[0],
             companyLastPrice: res[1],
-            displayColor: getTickerDisplayColor(res[1].dp)}
+            displayColor: Utils.getTickerColor(res[1].dp)}
         })
       )
     )

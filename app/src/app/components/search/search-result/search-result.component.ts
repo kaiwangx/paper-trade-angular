@@ -1,16 +1,16 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TickerSearchService} from "../../services/ticker-search.service";
-import {CompanyData} from "../../interfaces/company-data";
-import {WatchlistService} from "../../services/watchlist.service";
+import {TickerSearchService} from "../../../services/ticker-search.service";
+import {CompanyData} from "../../../interfaces/company-data";
+import {WatchlistService} from "../../../services/watchlist.service";
 import {NgbAlert, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {PortfolioService} from "../../services/portfolio.service";
-import {TransactionModelComponent} from "../transaction-model/transaction-model.component";
+import {PortfolioService} from "../../../services/portfolio.service";
+import {TransactionModelComponent} from "../../transaction-model/transaction-model.component";
 import {debounceTime, forkJoin, map, mergeMap, Observable, of, Subject, tap} from "rxjs";
 import * as dayjs from "dayjs";
-import {Utils} from "../../../utils/utils";
-import {CompanyNewItem} from "../../interfaces/company-new-item";
-import {PortfolioItem} from "../../interfaces/portfolio-item";
+import {Utils} from "../../../../utils/utils";
+import {CompanyNewItem} from "../../../interfaces/company-new-item";
+import {PortfolioItem} from "../../../interfaces/portfolio-item";
 
 @Component({
   selector: 'app-search-result',

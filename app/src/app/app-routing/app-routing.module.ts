@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchResultComponent } from "../components/search-result/search-result.component";
+import { SearchResultComponent } from "../components/search/search-result/search-result.component";
 import { DummyComponent } from "../components/dummy/dummy.component";
-import { SearchPageComponent } from "../components/search-page/search-page.component";
-import { PortfolioPageComponent } from "../components/portfolio-page/portfolio-page.component";
-import { WatchlistPageComponent } from "../components/watchlist-page/watchlist-page.component";
+import { SearchPageComponent } from "../components/search/search-page.component";
+import { PortfolioPageComponent } from "../components/portfolio/portfolio-page.component";
+import { WatchlistPageComponent } from "../components/watchlist/watchlist-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/search/home', pathMatch: 'full' },

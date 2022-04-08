@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CompanyData} from "../../interfaces/company-data";
+import {CompanyData} from "../../../../interfaces/company-data";
 
 @Component({
   selector: 'app-search-result-tabs',

@@ -11,7 +11,7 @@ import {TransactionModelComponent} from "../transaction-model/transaction-model.
 import {NgbAlert, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-portfolio-page',
+  selector: 'app-portfolio',
   templateUrl: './portfolio-page.component.html',
   styleUrls: ['./portfolio-page.component.css']
 })

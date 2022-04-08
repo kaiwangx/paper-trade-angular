@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {TickerAutoCompleteService} from "../../services/ticker-auto-complete.service";
-import {AutocompleteOption} from "../../interfaces/autocomplete-option";
+import {TickerAutoCompleteService} from "../../../services/ticker-auto-complete.service";
+import {AutocompleteOption} from "../../../interfaces/autocomplete-option";
 import {debounceTime} from "rxjs";
 import {Router} from "@angular/router";
-import {TickerSearchService} from "../../services/ticker-search.service";
+import {TickerSearchService} from "../../../services/ticker-search.service";
 
 @Component({
   selector: 'app-search-bar',

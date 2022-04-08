@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CompanyNewItem} from "../../interfaces/company-new-item";
+import {CompanyNewItem} from "../../../../interfaces/company-new-item";
 import * as dayjs from "dayjs";
 @Component({
   selector: 'app-search-result-tab-news-model',

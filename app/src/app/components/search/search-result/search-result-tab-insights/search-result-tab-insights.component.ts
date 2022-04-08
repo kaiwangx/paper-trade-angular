@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CompanyData} from "../../interfaces/company-data";
-import {CompanySocialSentimentsItem} from "../../interfaces/company-social-sentiments-item";
+import {CompanyData} from "../../../../interfaces/company-data";
+import {CompanySocialSentimentsItem} from "../../../../interfaces/company-social-sentiments-item";
 
 @Component({
   selector: 'app-search-result-tab-insights',
